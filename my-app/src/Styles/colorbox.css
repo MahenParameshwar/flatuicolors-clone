@@ -1,0 +1,63 @@
+.color__box{
+    width:20%;
+    height: 25%;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.copy__btn{
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    display: inline-block;
+    top:50%;
+    left: 50%;
+    margin-left: -50px;
+    margin-top: -15px;
+    text-align: center;
+    outline: none;
+    font-size: 1rem;
+    line-height: 30px;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    opacity: 0;
+    text-transform: uppercase;
+    
+}
+
+.color__box:hover .copy__btn{
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.box__container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.see__more{
+    background: rgba(255,255,255,.3);
+    color: #fff;
+    border-radius: 0;
+    width: 70px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    opacity: 1;
+    z-index: 900;
+    cursor: pointer;
+}
+
+.color__name{
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-left: 10px;
+    letter-spacing: 1px;
+}
