@@ -2,6 +2,7 @@ import { AppBar, makeStyles, Toolbar, Typography } from '@material-ui/core';
 import React, { useContext } from 'react';
 import { LevelContext } from '../../Context/LevelContextProvider';
 import ColorSlider from './ColorSlider';
+import SelectFormat from './SelectFormat';
 
 const useStyles = makeStyles(theme=>({
     root:{
@@ -44,15 +45,16 @@ function Navbar(props) {
                 <Typography variant="h3">
                     UIColorPicker
                 </Typography>
-                <Typography variant="div" className={classes.divLevel}>
+                <Typography component="div"  className={classes.divLevel}>
                         Level-[{level}]
                 </Typography>
-                <div className={classes.sliderContainer}>
+                <Typography component="div"  className={classes.sliderContainer}>
                     <ColorSlider/>
-                </div>
-                <div>
-                    Color
-                </div>
+                </Typography>
+
+                <SelectFormat/>
+
+                
             </Toolbar>
         </AppBar>
     );

@@ -43,7 +43,7 @@ function ColorSlider(props) {
     const {level,setLevel} = useContext(LevelContext)
     return (
         <div>
-             <PrettoSlider onChange={(e,newValue)=>setLevel(newValue)} 
+            <PrettoSlider onChange={(e,newValue)=>setLevel(newValue)} 
             min={100} max={900} step={100}  
             valueLabelDisplay="auto" 
             aria-label="pretto slider" 

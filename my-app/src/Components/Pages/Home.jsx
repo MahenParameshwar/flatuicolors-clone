@@ -5,6 +5,7 @@ import generatePalette from '../../Utils/genereateColorsRange';
 import Navbar from '../Layout/Navbar';
 
 
+
 function Home(props) {
     
     return (
