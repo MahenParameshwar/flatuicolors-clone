@@ -6,7 +6,7 @@ function Palette({colors}) {
     return (
         
             <div className="palette__colors">
-                {colors.map(color=><ColorBox key={color.name} {...color} />)}
+                {colors[500].map((color)=><ColorBox key={color.name} {...color} />)}
             </div>
     
     );

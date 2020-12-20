@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import '../../Styles/colorbox.css'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
 
-function ColorBox({name,color}) {
+function ColorBox({name,hex,rgb,rgba}) {
     const [isCopied,setIsCopied] = useState(false);
     
     const timer = useRef();
@@ -28,9 +28,9 @@ function ColorBox({name,color}) {
 
     return (
         <>
-        <CopyToClipboard text={color} onCopy={handelDisplayOverlay}>
-            <div style={{backgroundColor:color}} className="color__box">
-                <div style={{backgroundColor:color}} className={`overlay ${isCopied && 'show' }`}/>
+        <CopyToClipboard text={hex} onCopy={handelDisplayOverlay}>
+            <div style={{backgroundColor:hex}} className="color__box">
+                <div style={{backgroundColor:hex}} className={`overlay ${isCopied && 'show' }`}/>
                 <div className="box__container">
                     <div className="color__name">
                         {name}
@@ -46,7 +46,7 @@ function ColorBox({name,color}) {
         </CopyToClipboard>
         <div className={`copy__msg ${isCopied && 'show' }`}>
             <h1>copied!</h1>
-            <p>{color}</p>
+            <p>{hex}</p>
         </div>
         </>
     );
