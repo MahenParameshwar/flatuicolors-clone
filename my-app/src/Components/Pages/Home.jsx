@@ -4,16 +4,20 @@ import Palette from '../Palette/Palette';
 import generatePalette from '../../Utils/genereateColorsRange';
 import Navbar from '../Layout/Navbar';
 import Footer from '../Layout/Footer';
+import PaletteList from '../Palette/PaletteList';
 
 
 
 function Home(props) {
-    const {paletteName,emoji} = palletteCollection[3];
+    
     return (
         <>
-            <Navbar/>
+        <div>
+            <PaletteList />
+        </div>
+            {/* <Navbar/>
             <Palette colors={generatePalette(palletteCollection[3]).colors}/>
-            <Footer paletteName = {paletteName} emoji={emoji} />
+            <Footer paletteName = {paletteName} emoji={emoji} /> */}
         </>
     );
 }

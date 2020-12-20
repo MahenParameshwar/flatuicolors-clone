@@ -4,6 +4,7 @@ import { LevelContext } from '../../Context/LevelContextProvider';
 import ColorSlider from './ColorSlider';
 import SelectFormat from './SelectFormat';
 import CloseIcon from "@material-ui/icons/Close";
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles(theme=>({
@@ -35,6 +36,10 @@ const useStyles = makeStyles(theme=>({
     sliderContainer:{
         flex:'1',
         marginLeft:'30px'
+    },
+    homeLink:{
+        textDecoration: 'none',
+        color:'black'
     }
 }))
 
@@ -46,7 +51,7 @@ function Navbar(props) {
     return (
         <AppBar  className={classes.root}>
             <Toolbar disableGutters className={classes.container}>
-                <Typography variant="h3">
+                <Typography className={classes.homeLink} variant="h3" component={Link} to="/">
                     UIColorPicker
                 </Typography>
                 <Typography component="div"  className={classes.divLevel}>

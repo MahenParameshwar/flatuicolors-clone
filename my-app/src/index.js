@@ -3,10 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter} from 'react-router-dom';
+import LevelContextProvider  from './Context/LevelContextProvider';
+import { ThemeProvider } from '@material-ui/core';
+import theme from './Utils/theme'
 
 ReactDOM.render(
- 
-    <App />
+  <BrowserRouter>
+    <ThemeProvider theme={theme}>
+        <LevelContextProvider>
+          <App />
+        </LevelContextProvider>
+      </ThemeProvider>
+  </BrowserRouter>
  ,
   document.getElementById('root')
 );
