@@ -1,0 +1,11 @@
+footer{
+    height: 5vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+footer > div:last-child{
+    margin-right: 30px;
+}

@@ -1,8 +1,10 @@
-import { AppBar, makeStyles, Toolbar, Typography } from '@material-ui/core';
-import React, { useContext } from 'react';
+import { AppBar, IconButton, makeStyles, Snackbar, Toolbar, Typography } from '@material-ui/core';
+import React, { useContext, useState } from 'react';
 import { LevelContext } from '../../Context/LevelContextProvider';
 import ColorSlider from './ColorSlider';
 import SelectFormat from './SelectFormat';
+import CloseIcon from "@material-ui/icons/Close";
+
 
 const useStyles = makeStyles(theme=>({
     root:{
@@ -39,6 +41,8 @@ const useStyles = makeStyles(theme=>({
 function Navbar(props) {
     const classes = useStyles();
     const {level} = useContext(LevelContext)
+    const [snackBarOpen,setSnackBarOpen] = useState(false)
+    
     return (
         <AppBar  className={classes.root}>
             <Toolbar disableGutters className={classes.container}>
@@ -52,9 +56,27 @@ function Navbar(props) {
                     <ColorSlider/>
                 </Typography>
 
-                <SelectFormat/>
+                <SelectFormat setSnackBarOpen={setSnackBarOpen}/>
 
-                
+                <Snackbar
+                anchorOrigin={{vertical:'bottom',horizontal:'left'}}
+                open={snackBarOpen}
+                autoHideDuration={3000}
+                message={<span className="format__id">Format Changed</span>}
+                ContentProps={{
+                    'aria-describedby':'message-id'
+                }}
+                onClose={()=>setSnackBarOpen(false)}
+                action={[
+                    <IconButton
+                    onClick={()=>{setSnackBarOpen(false)}}
+                    color="inherit"
+                    key="close"
+                    aria-label="close">
+                        <CloseIcon/>
+                    </IconButton>
+                ]}
+                />
             </Toolbar>
         </AppBar>
     );

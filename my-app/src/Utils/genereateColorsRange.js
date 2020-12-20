@@ -51,7 +51,7 @@ export default function generatePalette({paletteName,id,emoji,colors}){
         
         for (let i in scale) {
             newPalette.colors[levels[i]].push({
-                name: `${color.name}-${levels[i]}`,
+                name: `${color.name} ${levels[i]}`,
                 id: color.name.toLowerCase(),
                 hex: scale[i],
                 rgb: chroma(scale[i]).css(),
