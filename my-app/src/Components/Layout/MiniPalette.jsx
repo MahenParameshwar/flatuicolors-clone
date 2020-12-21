@@ -16,7 +16,9 @@ const styles = {
     colors:{
         backgroundColor:'grey',
         height:'150px',
-        width:'100%'
+        width:'100%',
+        borderRadius:'5px',
+        overflow:'hidden'
     },
     title:{
         display:'flex',
@@ -60,7 +62,7 @@ function MiniPalette(props) {
                 }
             </div>
             <div className={classes.title}>
-                <h5 >
+                <h5>
                     {paletteName}
                 </h5>
                 <div>

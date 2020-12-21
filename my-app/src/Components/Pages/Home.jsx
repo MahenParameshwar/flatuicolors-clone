@@ -46,7 +46,9 @@ function Home(props) {
                     paletteCollection.map((palette,index)=>{
                         
                         return (
-                            <MiniPalette key={index} {...palette} />
+                            <Link  key={index} to= {`palette/${palette.id}`}>
+                                <MiniPalette {...palette} />
+                            </Link>
                             )
                     })
                 }
