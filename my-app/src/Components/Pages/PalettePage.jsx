@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { setCurrentPalette } from '../../Redux/action';
 import generatePalette from '../../Utils/genereateColorsRange';
 import paletteCollection from '../../Utils/seedcolors';
 import Footer from '../Layout/Footer';
@@ -9,13 +11,16 @@ import Palette from '../Palette/Palette';
 function PalettePage(props) {
 
     const {id} = useParams();
-    const currentPalete = paletteCollection.find(palette=> id===palette.id );
-    const {paletteName,emoji} = currentPalete
+    const dispatch = useDispatch()
+    const currentPalette = paletteCollection.find(palette=> id===palette.id );
+    dispatch(setCurrentPalette(generatePalette(currentPalette)))
+
     return (
         <>
-            <Navbar />
-                <Palette colors={generatePalette(currentPalete).colors} paletteId={currentPalete.id}  />
-            <Footer  paletteName={paletteName} emoji={emoji}/>
+            <Navbar /> 
+            <Palette/>
+            <Footer/> 
+            
         </>
             
         

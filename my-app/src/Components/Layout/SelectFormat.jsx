@@ -1,11 +1,16 @@
 import React, { useContext } from 'react';
 import {MenuItem, Select,} from '@material-ui/core'
-import { LevelContext } from '../../Context/LevelContextProvider';
+import { setFormat } from '../../Redux/action';
+import { useDispatch, useSelector } from 'react-redux';
+
 function SelectFormat({setSnackBarOpen}) {
 
-    const {format,setFormat} = useContext(LevelContext)
+    const format = useSelector(state=>state.format)
+
+    const dispatch = useDispatch();
+    
     const handleChange = (e)=>{
-        setFormat(e.target.value)
+        dispatch(setFormat(e.target.value))
         setSnackBarOpen(true)
     }
     return (

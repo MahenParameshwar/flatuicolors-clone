@@ -3,7 +3,11 @@ import '../../Styles/colorbox.css'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
 import { useHistory } from 'react-router-dom';
 
+
 function ColorBox({color,format,paletteId}) {
+
+    
+    
     const [isCopied,setIsCopied] = useState(false);
     const history = useHistory();
     const timer = useRef();

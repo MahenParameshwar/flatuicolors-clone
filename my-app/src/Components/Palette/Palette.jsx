@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import ColorBox from '../ColorBox/ColorBox';
 import '../../Styles/palette.css'
-import { LevelContext } from '../../Context/LevelContextProvider';
+
+import { useSelector } from 'react-redux';
 
 
 
-function Palette({colors,paletteId}) {
-    const {level,format} = useContext(LevelContext);
-
+function Palette() {
+    const [palette,level,format] = useSelector(state=>[state.palette,state.level,state.format]);
     return (
 
             <div className="palette__colors">
-                {colors[level].map((color)=><ColorBox key={color.name} paletteId={paletteId} color={color} format={format} />)}
+                {palette.colors[level].map((color)=><ColorBox  key={color.name} color={color} format={format} paletteId={palette.paletteId} />)}
             </div>
     
     

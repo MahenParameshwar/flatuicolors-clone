@@ -4,16 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
-import LevelContextProvider  from './Context/LevelContextProvider';
 import { ThemeProvider } from '@material-ui/core';
 import theme from './Utils/theme'
+import {Provider} from 'react-redux'
+import { store } from './Redux/store';
+
 
 ReactDOM.render(
   <BrowserRouter>
     <ThemeProvider theme={theme}>
-        <LevelContextProvider>
+        <Provider store={store}>
           <App />
-        </LevelContextProvider>
+        </Provider>
+        
       </ThemeProvider>
   </BrowserRouter>
  ,

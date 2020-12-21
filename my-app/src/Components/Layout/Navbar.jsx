@@ -1,10 +1,10 @@
 import { AppBar, IconButton, makeStyles, Snackbar, Toolbar, Typography } from '@material-ui/core';
-import React, { useContext, useState } from 'react';
-import { LevelContext } from '../../Context/LevelContextProvider';
+import React, { useState } from 'react';
 import ColorSlider from './ColorSlider';
 import SelectFormat from './SelectFormat';
 import CloseIcon from "@material-ui/icons/Close";
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 const useStyles = makeStyles(theme=>({
@@ -44,8 +44,10 @@ const useStyles = makeStyles(theme=>({
 }))
 
 function Navbar(props) {
+    
     const classes = useStyles();
-    const {level} = useContext(LevelContext)
+    
+    const level = useSelector(state=>state.level) 
     const [snackBarOpen,setSnackBarOpen] = useState(false)
     
     return (

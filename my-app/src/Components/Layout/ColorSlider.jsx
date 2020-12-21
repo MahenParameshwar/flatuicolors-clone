@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
-import { LevelContext } from '../../Context/LevelContextProvider';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLevel } from '../../Redux/action';
 
 const PrettoSlider = withStyles({
         root: {
@@ -40,14 +40,17 @@ const PrettoSlider = withStyles({
 })(Slider);
 
 function ColorSlider(props) {
-    const {level,setLevel} = useContext(LevelContext)
+    const level = useSelector(state=>state.level);
+    const dispatch = useDispatch()
     return (
         <div>
-            <PrettoSlider onChange={(e,newValue)=>setLevel(newValue)} 
+            <PrettoSlider onChange={(e,newValue)=>dispatch(setLevel(newValue))} 
+            
+            defaultValue={500}
             min={100} max={900} step={100}  
             valueLabelDisplay="auto" 
             aria-label="pretto slider" 
-            defaultValue={level} />
+            value={level} />
         </div>
     );
 }
