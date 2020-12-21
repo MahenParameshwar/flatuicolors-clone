@@ -4,6 +4,7 @@ footer{
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    text-decoration: none;
 }
 
 footer > div:last-child{

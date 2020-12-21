@@ -10,7 +10,7 @@ function PalettePage(props) {
 
     const {id} = useParams();
     const currentPalete = paletteCollection.find(palette=> id===palette.id );
-    const {paletteName,emoji,colors} = currentPalete
+    const {paletteName,emoji} = currentPalete
     return (
         <>
             <Navbar />
