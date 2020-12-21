@@ -1,5 +1,6 @@
 .palette__colors{
     height: 85vh;
-    display: flex;
-    flex-wrap: wrap;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(5,1fr)
 }

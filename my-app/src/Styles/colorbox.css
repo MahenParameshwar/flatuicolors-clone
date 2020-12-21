@@ -1,6 +1,6 @@
 .color__box{
-    width:20%;
-    height: 25%;
+    width: 100%;
+    height: auto;
     margin: 0 auto;
     position: relative;
     display: flex;
@@ -11,7 +11,7 @@
 }
 
 
-.copy__btn{
+.copy__btn,.back__btn{
     width: 100px;
     height: 30px;
     position: absolute;
@@ -30,7 +30,10 @@
     opacity: 0;
     text-transform: uppercase;
     cursor: pointer;
-    
+}
+
+.back__btn{
+    opacity: 1;
 }
 
 .color__box:hover .copy__btn{

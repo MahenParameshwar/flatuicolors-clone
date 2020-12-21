@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme=>({
         display:'flex',
         alignItems:'center',
         width:'100%',
+        justifyContent:'space-between',
         margin:'0 30px'
         
     },
@@ -43,7 +44,7 @@ const useStyles = makeStyles(theme=>({
     }
 }))
 
-function Navbar(props) {
+function Navbar({hideSlider=false}) {
     
     const classes = useStyles();
     
@@ -56,12 +57,18 @@ function Navbar(props) {
                 <Typography className={classes.homeLink} variant="h3" component={Link} to="/">
                     UIColorPicker
                 </Typography>
-                <Typography component="div"  className={classes.divLevel}>
-                        Level-[{level}]
-                </Typography>
-                <Typography component="div"  className={classes.sliderContainer}>
-                    <ColorSlider/>
-                </Typography>
+                {
+                    hideSlider ? <></> :
+                    <>
+                        <Typography component="div"  className={classes.divLevel}>
+                            Level-[{level}]
+                        </Typography>
+                        <Typography component="div"  className={classes.sliderContainer}>
+                            <ColorSlider/>
+                        </Typography>
+                    </>
+                }
+                
 
                 <SelectFormat setSnackBarOpen={setSnackBarOpen}/>
 

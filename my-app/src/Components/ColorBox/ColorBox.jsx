@@ -4,10 +4,8 @@ import {CopyToClipboard} from 'react-copy-to-clipboard'
 import { useHistory } from 'react-router-dom';
 
 
-function ColorBox({color,format,paletteId}) {
+function ColorBox({color,format,paletteId,showMore=true}) {
 
-    
-    
     const [isCopied,setIsCopied] = useState(false);
     const history = useHistory();
     const timer = useRef();
@@ -45,11 +43,11 @@ function ColorBox({color,format,paletteId}) {
                     <div className="color__name">
                         {color.name}
                     </div>
-                    
-                    <div onClick={(e)=>handleClick(e,color.id)} className="see__more">
-                        More
-                    </div>
-                    
+                    {
+                        showMore && <div onClick={(e)=>handleClick(e,color.id)} className="see__more">
+                                        More
+                                    </div>
+                    }
                 </div>
                 <button className = "copy__btn">
                         Copy
