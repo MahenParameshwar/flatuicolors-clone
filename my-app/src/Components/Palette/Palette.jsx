@@ -5,13 +5,13 @@ import { LevelContext } from '../../Context/LevelContextProvider';
 
 
 
-function Palette({colors}) {
+function Palette({colors,paletteId}) {
     const {level,format} = useContext(LevelContext);
 
     return (
 
             <div className="palette__colors">
-                {colors[level].map((color)=><ColorBox key={color.name} color={color} format={format} />)}
+                {colors[level].map((color)=><ColorBox key={color.name} paletteId={paletteId} color={color} format={format} />)}
             </div>
     
     

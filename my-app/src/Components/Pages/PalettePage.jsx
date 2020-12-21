@@ -14,7 +14,7 @@ function PalettePage(props) {
     return (
         <>
             <Navbar />
-                <Palette colors={generatePalette(currentPalete).colors}  />
+                <Palette colors={generatePalette(currentPalete).colors} paletteId={currentPalete.id}  />
             <Footer  paletteName={paletteName} emoji={emoji}/>
         </>
             

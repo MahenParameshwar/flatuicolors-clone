@@ -1,17 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react';
 import '../../Styles/colorbox.css'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
+import { useHistory } from 'react-router-dom';
 
-function ColorBox({color,format}) {
+function ColorBox({color,format,paletteId}) {
     const [isCopied,setIsCopied] = useState(false);
-    
+    const history = useHistory();
     const timer = useRef();
     
+    const handleClick = (e,id)=>{
+        e.stopPropagation();
+        history.push(`/palette/${paletteId}/${id}`)
+    }
     const handelDisplayOverlay=()=>{
-        setIsCopied(true);
+        
         timer.current = setTimeout(()=>{
             setIsCopied(false);
         },1500)
+        setIsCopied(true);
     }
 
     /*Handels display of overlay */
@@ -35,9 +41,11 @@ function ColorBox({color,format}) {
                     <div className="color__name">
                         {color.name}
                     </div>
-                    <div className="see__more">
+                    
+                    <div onClick={(e)=>handleClick(e,color.id)} className="see__more">
                         More
                     </div>
+                    
                 </div>
                 <button className = "copy__btn">
                         Copy
