@@ -1,6 +1,0 @@
-.palette__colors{
-    height: 85vh;
-    width: 100vw;
-    display: grid;
-    grid-template-columns: repeat(5,1fr)
-}

@@ -22,7 +22,7 @@ function PalettePage(props) {
     return (
         <>
             <Navbar /> 
-            <Palette/>
+                <Palette/>
             <Footer/> 
             
         </>

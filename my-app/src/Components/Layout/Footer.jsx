@@ -1,13 +1,16 @@
+import { withStyles } from '@material-ui/styles';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import '../../Styles/footer.css'
-function Footer() {
+import {styles} from '../../Styles/footer.js'
+
+function Footer(props) {
     const {paletteName,emoji} = useSelector(state=>state.palette)
+    const {classes} = props
     return (
-        <footer>
+        <footer className={classes.footer}>
             <div>{paletteName}-{emoji}</div>
         </footer>
     );
 }
 
-export default Footer;
+export default withStyles(styles)(Footer);

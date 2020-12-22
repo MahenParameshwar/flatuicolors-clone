@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import '../../Styles/colorbox.css'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
 import { useHistory } from 'react-router-dom';
+import {styles} from '../../Styles/colorBox';
+import { withStyles } from '@material-ui/styles';
+import classNames from "classnames";
 
 
-function ColorBox({color,format,paletteId,showMore=true}) {
+function ColorBox({color,format,paletteId,classes,showMore=true}) {
 
     const [isCopied,setIsCopied] = useState(false);
     const history = useHistory();
@@ -37,29 +39,36 @@ function ColorBox({color,format,paletteId,showMore=true}) {
     return (
         <>
         <CopyToClipboard text={color[format]} onCopy={handelDisplayOverlay}>
-            <div style={{backgroundColor:color[format]}} className="color__box">
-                <div style={{backgroundColor:color[format]}} className={`overlay ${isCopied && 'show' }`}/>
-                <div className="box__container">
-                    <div className="color__name">
+            <div  className={classes.colorBox}>
+                <div style={{backgroundColor:color[format]}} className={ classNames(classes.copyOverlay , { [classes.showOverlay] : isCopied})} />
+                <div className={classes.boxContainer}>
+                    <div className={classes.colorName}>
                         {color.name}
                     </div>
                     {
-                        showMore && <div onClick={(e)=>handleClick(e,color.id)} className="see__more">
+                        showMore && <div onClick={(e)=>handleClick(e,color.id)} className={classes.seeMore}>
                                         More
                                     </div>
                     }
                 </div>
-                <button className = "copy__btn">
+                <button className = {classes.copyButton}>
+                    
                         Copy
+                    
                 </button>
             </div>
         </CopyToClipboard>
-        <div className={`copy__msg ${isCopied && 'show' }`}>
-            <h1>copied!</h1>
-            <p>{color[format]}</p>
+        <div className={classNames(classes.copyMsg , { [ classes.showMsg ] : isCopied})}>
+            <h1 className={classes.copiedText}>copied!</h1>
+            <p className={classes.copyText}>{color[format]}</p>
         </div>
         </>
     );
 }
 
-export default ColorBox;
+export default withStyles(styles)(React.memo(ColorBox,(prevProps,nextProps)=>{
+    if(prevProps.paletteId === nextProps.paletteId){
+        return true
+    }
+    return false
+}))
