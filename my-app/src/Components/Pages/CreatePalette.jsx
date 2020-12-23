@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -14,6 +14,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { SketchPicker,ChromePicker } from 'react-color';
 import { Button, ButtonGroup } from '@material-ui/core';
 import DragableColorBox from '../ColorBox/DragableColorBox';
+import {ValidatorForm,TextValidator} from 'react-material-ui-form-validator'
 
 
 const drawerWidth = 300;
@@ -63,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop:'64px',
     height:'calc(100vh - 64px)',
     display:'grid',
-    gridTemplateRows:'repeat(4,1fr)',
+    gridTemplateRows:'repeat(5,1fr)',
     gridTemplateColumns: "repeat(5,1fr)",
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
@@ -84,8 +85,9 @@ export default function CreatePalette() {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-    const [color,setColor] = useState('purple');
+    const [currentColor,setCurrentColor] = useState('purple');
     const [palette,setPalette] = useState([]);
+    const [name,setName] = useState("");
 
     const handleDrawerOpen = () => {
     setOpen(true);
@@ -96,9 +98,22 @@ export default function CreatePalette() {
   };
 
   const addNewColor = ()=>{
-      setPalette(prev=>[...palette,color])
+      setPalette(prev=>[...palette,{name,color:currentColor}])
       
   }
+
+  useEffect(()=>{
+    ValidatorForm.addValidationRule('isNameUnique', (value) => {
+    
+        return palette.every( ({name}) => name.toLowerCase() !== value.toLowerCase())
+        
+    })
+
+    ValidatorForm.addValidationRule('isColorUnique', (value) => {
+         return palette.every(({color}) =>  color !== currentColor)
+    });
+
+  })
 
   return (
     <div className={classes.root}>
@@ -151,15 +166,23 @@ export default function CreatePalette() {
             </Button>
         </ButtonGroup>
     
-        <SketchPicker color={color} onChange={(newColor)=>{
-                                                            setColor(newColor.hex)}} />
-        <Button 
-        variant="contained" 
-        style={{backgroundColor:color}} 
-        onClick = {addNewColor}
-        >
-            ADD COLOR
-        </Button>
+        <SketchPicker color={currentColor} onChange={(newColor)=>{
+                                                            setCurrentColor(newColor.hex)}} />
+        
+        <ValidatorForm onSubmit={addNewColor}>
+            <TextValidator
+            validators={['required','isNameUnique','isColorUnique']}
+            errorMessages={['this field is required', 'color name must be unique', 'color must be unique']}
+            value={name} onChange={(e)=>setName(e.target.value)}  />
+            <Button 
+            variant="contained" 
+            style={{backgroundColor:currentColor}} 
+            type="submit"
+            >
+                ADD COLOR
+            </Button>
+        </ValidatorForm>
+        
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -170,9 +193,9 @@ export default function CreatePalette() {
            
             {
         
-                palette.map((color,index)=>{
-                    return <DragableColorBox color={color} key={index}>
-                                {color}
+                palette.map((paletteItem,index)=>{
+                    return <DragableColorBox {...paletteItem} key={paletteItem.name}>
+                                
                             </DragableColorBox>
                 })
             }
