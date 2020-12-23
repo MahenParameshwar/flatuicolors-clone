@@ -1,6 +1,6 @@
 export const styles = {
     root:{
-        backgroundColor:"blue",
+        // backgroundColor:"blue",
         height:'100%',
         display:'flex',
         alignItems:'flex-start',

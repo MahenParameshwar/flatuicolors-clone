@@ -8,7 +8,7 @@ function Footer(props) {
     const {classes} = props
     return (
         <footer className={classes.footer}>
-            <div>{paletteName}-{emoji}</div>
+            <div style={{marginRight:"30px"}}>{paletteName}-{emoji}</div>
         </footer>
     );
 }

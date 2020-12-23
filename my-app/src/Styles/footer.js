@@ -7,8 +7,4 @@ export const styles = {
         justifyContent: "flex-end",
         textDecoration: "none",
     },
-    
-    "& div:last-child":{
-        marginRight: "30px"
-    }
 }
