@@ -13,6 +13,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { SketchPicker,ChromePicker } from 'react-color';
 import { Button, ButtonGroup } from '@material-ui/core';
+import DragableColorBox from '../ColorBox/DragableColorBox';
 
 
 const drawerWidth = 300;
@@ -58,7 +59,12 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    width:'calc(100vw-300px)',
+    marginTop:'64px',
+    height:'calc(100vh - 64px)',
+    display:'grid',
+    gridTemplateRows:'repeat(4,1fr)',
+    gridTemplateColumns: "repeat(5,1fr)",
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -78,7 +84,9 @@ export default function CreatePalette() {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-    const [color,setColor] = useState('purple')
+    const [color,setColor] = useState('purple');
+    const [palette,setPalette] = useState([]);
+
     const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -86,6 +94,11 @@ export default function CreatePalette() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const addNewColor = ()=>{
+      setPalette(prev=>[...palette,color])
+      
+  }
 
   return (
     <div className={classes.root}>
@@ -140,7 +153,11 @@ export default function CreatePalette() {
     
         <SketchPicker color={color} onChange={(newColor)=>{
                                                             setColor(newColor.hex)}} />
-        <Button variant="contained" style={{backgroundColor:color}} >
+        <Button 
+        variant="contained" 
+        style={{backgroundColor:color}} 
+        onClick = {addNewColor}
+        >
             ADD COLOR
         </Button>
       </Drawer>
@@ -149,8 +166,18 @@ export default function CreatePalette() {
           [classes.contentShift]: open,
         })}
       >
-        <div className={classes.drawerHeader} />
-       
+        {/* <div className={classes.drawerHeader} /> */}
+           
+            {
+        
+                palette.map((color,index)=>{
+                    return <DragableColorBox color={color} key={index}>
+                                {color}
+                            </DragableColorBox>
+                })
+            }
+           
+        
       </main>
     </div>
   );
