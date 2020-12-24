@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import {useDispatch, useSelector} from 'react-redux'
+import {createNewPalette} from '../../Redux/action'
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -15,6 +17,7 @@ import { SketchPicker,ChromePicker } from 'react-color';
 import { Button, ButtonGroup } from '@material-ui/core';
 import DragableColorBox from '../ColorBox/DragableColorBox';
 import {ValidatorForm,TextValidator} from 'react-material-ui-form-validator'
+import { useHistory } from 'react-router-dom';
 
 
 const drawerWidth = 300;
@@ -87,15 +90,40 @@ export default function CreatePalette() {
     const [open, setOpen] = React.useState(false);
     const [currentColor,setCurrentColor] = useState('purple');
     const [palette,setPalette] = useState([]);
+    //name = colorName
     const [name,setName] = useState("");
+    const [paletteName,setPaletteName] = useState("");
+    const palettes = useSelector(state=>state.palettes)
+  
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleDrawerOpen = () => {
+    
     setOpen(true);
-  };
+    };
 
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+
+ 
+
+  const addnewPalette = ()=>{
+    
+
+    dispatch(createNewPalette({
+      paletteName,
+      id: paletteName.toLowerCase().replace(/ /g, "-"),
+      emoji: "🇮🇳",
+      colors:palette
+    }))
+
+    history.push('/')
+    
+  }
+
 
   const addNewColor = ()=>{
       setPalette(prev=>[...palette,{name,color:currentColor}])
@@ -103,15 +131,19 @@ export default function CreatePalette() {
   }
 
   useEffect(()=>{
+
+
     ValidatorForm.addValidationRule('isNameUnique', (value) => {
-    
         return palette.every( ({name}) => name.toLowerCase() !== value.toLowerCase())
-        
     })
 
     ValidatorForm.addValidationRule('isColorUnique', (value) => {
          return palette.every(({color}) =>  color !== currentColor)
     });
+
+    ValidatorForm.addValidationRule('isPaletteNameUnique', (value)=>{
+      return palettes.every(({paletteName})=> paletteName.toLowerCase() !== value.toLowerCase() )
+    })
 
   })
 
@@ -120,6 +152,7 @@ export default function CreatePalette() {
       <CssBaseline />
       <AppBar
         position="fixed"
+        color="default"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -137,6 +170,17 @@ export default function CreatePalette() {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
+          <ValidatorForm onSubmit={addnewPalette}>
+
+            <TextValidator  validators={['required','isPaletteNameUnique']}
+            errorMessages={['this field is required', 'Palette name must be unique']}
+            value={paletteName} onChange={(e)=>setPaletteName(e.target.value)}  />
+
+            <Button variant="contained" color="secondary" type="submit">
+                Save Palette
+            </Button>
+          </ValidatorForm>
+          
         </Toolbar>
       </AppBar>
       <Drawer
@@ -158,7 +202,7 @@ export default function CreatePalette() {
             Design your Palette
         </Typography>
         <ButtonGroup>
-            <Button variant="contained" color="secondary">
+            <Button variant="contained" color="secondary" >
                 Create Palette
             </Button>
             <Button variant="contained" color="primary">
@@ -183,14 +227,14 @@ export default function CreatePalette() {
             </Button>
         </ValidatorForm>
         
-      </Drawer>
-      <main
+        </Drawer>
+        <main
         className={clsx(classes.content, {
-          [classes.contentShift]: open,
+            [classes.contentShift]: open,
         })}
-      >
+        >
         {/* <div className={classes.drawerHeader} /> */}
-           
+
             {
         
                 palette.map((paletteItem,index)=>{

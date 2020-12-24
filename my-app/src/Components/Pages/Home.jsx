@@ -1,5 +1,6 @@
 import { withStyles } from '@material-ui/styles';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {styles} from '../../Styles/home'
 import paletteCollection from '../../Utils/seedcolors'
@@ -8,6 +9,7 @@ import MiniPalette from '../Layout/MiniPalette';
 
 function Home(props) {
     const {classes} = props
+    const palettes = useSelector(state=>state.palettes)
     return (
         <div className={classes.root}>
             <div className={classes.container}>
@@ -17,7 +19,7 @@ function Home(props) {
                 </nav>
                 <div className={classes.palettes}>
                 {
-                    paletteCollection.map((palette,index)=>{
+                    palettes.map((palette,index)=>{
                         
                         return (
                             <Link  key={index} to= {`palette/${palette.id}`}>

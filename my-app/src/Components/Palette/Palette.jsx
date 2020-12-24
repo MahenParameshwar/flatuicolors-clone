@@ -10,7 +10,8 @@ const styles = {
                 height: "85vh",
                 width: "100vw",
                 display: "grid",
-                gridTemplateColumns: "repeat(5,1fr)"
+                gridTemplateColumns: "repeat(5,1fr)",
+                gridTemplateRows: "repeat(4,1fr)"
 }
 }
 

@@ -11,7 +11,8 @@ export const styles = {
         display:'flex',
         alignItems:'flex-start',
         flexDirection:"column",
-        flexWrap:'wrap'
+        flexWrap:'wrap',
+        paddingBottom:'200px'
     },
     nav:{
         display:'flex',

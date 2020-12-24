@@ -1,4 +1,4 @@
-import { SET_CURRENT_PALETTE, SET_FORMAT, SET_LEVEL } from "./actionType"
+import { SET_CURRENT_PALETTE, SET_FORMAT, SET_LEVEL , CREATE_NEW_PALETTE } from "./actionType"
 
 export const setLevel = (level)=>{
     return {
@@ -19,5 +19,13 @@ export const setCurrentPalette = (palette)=>{
     return {
         type:SET_CURRENT_PALETTE,
         payload:palette
+    }
+}
+
+export const createNewPalette = (newPalette)=>{
+   
+    return {
+        type:CREATE_NEW_PALETTE,
+        payload:newPalette
     }
 }
