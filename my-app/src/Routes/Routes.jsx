@@ -11,9 +11,7 @@ function Routes(props) {
             <Route path="/" exact>
                 <Home/>
             </Route>
-            <Route exact path = "/palette/createPalette" >
-                <CreatePalette />
-            </Route>
+            <Route exact path = "/palette/createPalette" render={(props)=><CreatePalette {...props} />} />
             <Route exact path = "/palette/:id">
                 <PalettePage />
             </Route>

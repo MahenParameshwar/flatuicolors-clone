@@ -10,7 +10,7 @@ export const styles =   {
         display: "flex",
         alignItems: "flex-end",
         cursor: "pointer",
-        textTtransform: "uppercase",
+        textTransform: "uppercase",
         '&:hover button':{
             opacity:1
         }

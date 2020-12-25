@@ -12,7 +12,7 @@ function PalettePage(props) {
     const {id} = useParams();
     const dispatch = useDispatch()
     const palettes = useSelector(state => state.palettes)
-    console.log(palettes)
+    
     const currentPalette = palettes.find(palette=> id===palette.id );
     
     useEffect(()=>{

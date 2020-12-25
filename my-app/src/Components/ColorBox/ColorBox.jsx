@@ -66,9 +66,4 @@ function ColorBox({color,format,paletteId,classes,showMore=true}) {
     );
 }
 
-export default withStyles(styles)(React.memo(ColorBox,(prevProps,nextProps)=>{
-    if(prevProps.paletteId === nextProps.paletteId){
-        return true
-    }
-    return false
-}))
+export default withStyles(styles)(ColorBox)
