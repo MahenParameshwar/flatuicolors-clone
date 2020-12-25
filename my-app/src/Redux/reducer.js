@@ -26,7 +26,7 @@ export const reducer = (state=initState,{type,payload})=>{
         };
 
         case CREATE_NEW_PALETTE:
-        console.log(payload)    
+           
         return {
             ...state,
             palettes:[...state.palettes,payload]

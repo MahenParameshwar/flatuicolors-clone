@@ -17,7 +17,6 @@ const styles = {
 
 function Palette(props) {
     const [palette,level,format] = useSelector(state=>[state.palette,state.level,state.format]);
-    console.log(format)
     const {classes} = props
     return (
             palette.colors ?
