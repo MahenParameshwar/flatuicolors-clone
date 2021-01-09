@@ -14,10 +14,11 @@ import { Button, makeStyles } from '@material-ui/core';
 import {ValidatorForm,TextValidator} from 'react-material-ui-form-validator'
 import { useHistory } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
+import PaletteMetaForm from './PaletteMetaForm';
 
 
 
-const drawerWidth = 300;
+const drawerWidth = 350;
 const styles = theme=>(
     {
     root:{
@@ -89,20 +90,14 @@ function PaletteFormNav({classes,open,paletteName,addnewPalette,setPaletteName,h
                         </Typography>
                     </Toolbar>
                     <div className={classes.navBtns}>
-                            <ValidatorForm onSubmit={addnewPalette}>
-                
-                                <TextValidator  validators={['required','isPaletteNameUnique']}
-                                errorMessages={['this field is required', 'Palette name already taken']}
-                                value={paletteName} onChange={(e)=>setPaletteName(e)}  />
-                                <Button variant="contained" color="secondary" type="submit">
-                                    Save Palette
-                                </Button>
-
-                            </ValidatorForm>
-                            
-                            <Button variant="contained" color="primary" onClick={goToHome} >
-                                Go Back
-                            </Button>
+                          <PaletteMetaForm 
+                          setPaletteName={setPaletteName}
+                          paletteName={paletteName}
+                          addnewPalette={addnewPalette}
+                          palettes={palettes}/>
+                           <Button variant="contained" color="primary" onClick={goToHome} >
+                Go Back
+                         </Button>
                         </div>
                 </AppBar>  
         </div>
