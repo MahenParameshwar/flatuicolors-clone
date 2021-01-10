@@ -1,4 +1,4 @@
-import React, {  useEffect } from 'react';
+import React, {  useEffect, useState } from 'react';
 
 import clsx from 'clsx';
 
@@ -31,6 +31,7 @@ const styles = theme=>(
     }),
     flexDirection:'row',
     justifyContent: 'space-between',
+    alignItems:'center',
     height:'64px'
   },
   appBarShift: {
@@ -47,14 +48,17 @@ const styles = theme=>(
     marginRight:10,
   },
   navBtns:{
-
+    marginRight:'1rem'
+  },
+  buttons:{
+    margin:'0 0.5rem'
   }    
 
 })
 function PaletteFormNav({classes,open,paletteName,addnewPalette,setPaletteName,handleDrawerOpen,palettes}) {
 
     const history = useHistory();
-    
+    const [showingForm,setShowingForm] = useState(false)
     useEffect(()=>{
         ValidatorForm.addValidationRule('isPaletteNameUnique', (value)=>{
             return palettes.every(({paletteName})=> paletteName.toLowerCase() !== value.toLowerCase() )
@@ -90,16 +94,23 @@ function PaletteFormNav({classes,open,paletteName,addnewPalette,setPaletteName,h
                         </Typography>
                     </Toolbar>
                     <div className={classes.navBtns}>
-                          <PaletteMetaForm 
+                           <Button className={classes.buttons} variant="contained" color="secondary" onClick={goToHome} >
+                            Go Back
+                            </Button>
+                            <Button variant="contained" className={classes.buttons} color="primary" onClick ={()=>setShowingForm(true)} >
+                              Save
+                            </Button>
+                        </div>
+                </AppBar>
+                {
+                  showingForm &&
+                <PaletteMetaForm
+                          setShowingForm = {setShowingForm} 
                           setPaletteName={setPaletteName}
                           paletteName={paletteName}
                           addnewPalette={addnewPalette}
-                          palettes={palettes}/>
-                           <Button variant="contained" color="primary" onClick={goToHome} >
-                Go Back
-                         </Button>
-                        </div>
-                </AppBar>  
+                          palettes={palettes}/> 
+                } 
         </div>
     );
 }
