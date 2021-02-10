@@ -1,62 +1,22 @@
 import React, {  useEffect, useState } from 'react';
-
 import clsx from 'clsx';
-
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-
+import classNames from "classnames";
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
-import { Button, makeStyles } from '@material-ui/core';
-import {ValidatorForm,TextValidator} from 'react-material-ui-form-validator'
+import {styles} from '../../Styles/PaletteFormNavStyles'
+import { Button} from '@material-ui/core';
+import {ValidatorForm} from 'react-material-ui-form-validator'
 import { useHistory } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import PaletteMetaForm from './PaletteMetaForm';
+import AddToPhotosIcon from '@material-ui/icons/AddToPhotos';
 
-
-
-const drawerWidth = 350;
-const styles = theme=>(
-    {
-    root:{
-        dispaly:'flex'
-    },
-    appBar: {
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    flexDirection:'row',
-    justifyContent: 'space-between',
-    alignItems:'center',
-    height:'64px'
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-   
-  },
-  menuButton: {
-    marginLeft:12,
-    marginRight:10,
-  },
-  navBtns:{
-    marginRight:'1rem'
-  },
-  buttons:{
-    margin:'0 0.5rem'
-  }    
-
-})
 function PaletteFormNav({classes,open,paletteName,addnewPalette,setPaletteName,handleDrawerOpen,palettes}) {
-
+    console.log(open)
     const history = useHistory();
     const [showingForm,setShowingForm] = useState(false)
     useEffect(()=>{
@@ -84,9 +44,10 @@ function PaletteFormNav({classes,open,paletteName,addnewPalette,setPaletteName,h
                         aria-label="open drawer"
                         onClick={handleDrawerOpen}
                         edge="start"
-                        className={clsx(classes.menuButton, open && classes.hide)}
+                        
+                        className={classNames(classes.menuButton, {[classes.hide]:open})}
                         >
-                        <MenuIcon />
+                        < AddToPhotosIcon  />
 
                         </IconButton>
                         <Typography variant="h6" noWrap>

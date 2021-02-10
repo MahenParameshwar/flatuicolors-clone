@@ -1,7 +1,7 @@
 import { withStyles } from '@material-ui/styles';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {styles} from '../../Styles/home'
 import paletteCollection from '../../Utils/seedcolors'
 import MiniPalette from '../Layout/MiniPalette';
@@ -10,21 +10,28 @@ import MiniPalette from '../Layout/MiniPalette';
 function Home(props) {
     const {classes} = props
     const palettes = useSelector(state=>state.palettes)
+    const history = useHistory()
+    useEffect(()=>{
+        window.localStorage.setItem("palettes",
+        JSON.stringify(palettes))    
+    },[palettes])
+
     return (
         <div className={classes.root}>
-            <div className={classes.container}>
-                <nav className={classes.nav}>
+            <nav className={classes.nav}>
                     <h1>React Colors</h1>
-                    <Link to="/palette/createPalette" >Create Palette</Link>
+                    <Link to="/palette/createPalette" style={{color:"white"}} >Create Palette</Link>
                 </nav>
+            <div className={classes.container}>
+                
                 <div className={classes.palettes}>
                 {
                     palettes.map((palette,index)=>{
                         
                         return (
-                            <Link  key={index} to= {`palette/${palette.id}`}>
+                            <div  key={index} onClick={()=>history.push(`palette/${palette.id}`)}>
                                 <MiniPalette {...palette} />
-                            </Link>
+                            </div>
                             )
                     })
                 }

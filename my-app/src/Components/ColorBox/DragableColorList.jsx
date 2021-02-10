@@ -8,7 +8,15 @@ const styles = theme=>({
         display:'grid',
         gridTemplateRows:'repeat(4,1fr)',
         gridTemplateColumns: "repeat(5,1fr)",
-        height:'100%'
+        height:"100%",
+        "@media (max-width: 700px)": {
+            
+            gridTemplateColumns: "repeat(2,1fr)",
+          },
+          "@media (max-width: 500px)": {
+            height: "100%",
+            gridTemplateColumns: "repeat(1,1fr)",
+          },
     }
 })
 

@@ -9,72 +9,12 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { Button, ButtonGroup } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import {ValidatorForm} from 'react-material-ui-form-validator'
 import DragableColorList from '../ColorBox/DragableColorList';
 import PaletteFormNav from '../Layout/PaletteFormNav';
 import ColorPickerForm from '../Layout/ColorPickerForm';
-
-
-const drawerWidth = 350;
-
-const styles = theme => ({
-  root: {
-    display: 'flex',
-  },
-  
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-    dispaly:'flex',
-    alignIntems:'center',
-    justifyContent:'center'
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-  content: {
-    flexGrow: 1,
-    width:'calc(100vw-300px)',
-    marginTop:'64px',
-    height:'calc(100vh - 64px)',
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
-  container:{
-    display:'flex',
-    flexDirection:'column',
-    width:'90%',
-    alignItems:'center',
-    justifyContent:'center',
-    height:'100%'
-  },
-  buttons:{
-
-  }
-});
-
+import {styles} from '../../Styles/createPalette'
 class CreatePalette extends Component {
 
     static defaultProps = {
@@ -86,7 +26,7 @@ class CreatePalette extends Component {
       this.state = {
         open:false,
         currentColor:'purple',
-        palette:props.palettes[0].colors,
+        palette:[props.palettes[0].colors[0]],
         colorName:"",
         paletteName:"",
       }

@@ -15,8 +15,6 @@ const styles = theme=>({
 
 function ColorPickerForm({classes,currentColor,setCurrentColor,colorName,setColorName,paletteIsFull,addNewColor}) {
 
-  
-    
     return (
         <>
          <SketchPicker className={classes.picker} color={currentColor} onChange={(newColor)=>{

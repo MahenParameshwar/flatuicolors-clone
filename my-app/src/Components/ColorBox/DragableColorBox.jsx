@@ -8,6 +8,14 @@ const styles = {
         width: "100%",
         margin: "0 auto",
         position: "relative",
+        "@media (max-width: 700px)": {
+            height: "150px",
+            
+          },
+          "@media (max-width: 500px)": {
+            height: "50px",
+            gridTemplateColumns: "repeat(1,1fr)",
+          },
         "&:hover svg":{
             color:'white',
             transform:'scale(1.3)'

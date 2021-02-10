@@ -30,7 +30,6 @@ export default function PaletteMetaForm({palettes,addnewPalette,paletteName,setP
     })
   } 
     
-
   return (
     <div>
       <Dialog open={currentDialog==='emojiPicker'} onClose={handleClose}>
