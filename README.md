@@ -8,13 +8,13 @@
 ## Features
   <ul>
     <li>
-      The use can create his own collection of colors and store it in a palette 
+      User can create his own collection of colors and store it in a palette 
     </li>
     <li>
-      He can copy the color and use the rgba,rgb or hex code in his project
+      User can copy the color and use the rgba,rgb or hex code in his project
     </li>
     <li>
-      He can choose between 10 different shades of the same color
+      User can choose between 10 different shades of the same color
     </li>
     <li>
       Can organize the colors in the palette in any order
@@ -37,13 +37,13 @@
 
 
 ## Demo
-![gif](./images/UICOLORS.gif)
+![gif](./Images/UICOLORS.gif)
 
 ## <code>Landing Page</code>
-![img](./screenshots/colorspage.png)
+![img](./Images/colorspage.png)
 
 ## <code>Create Palette Page</code>
-![gif](./screenshots/DesignPalette.png)
+![gif](./Images/DesignPalette.png)
 
 
 
